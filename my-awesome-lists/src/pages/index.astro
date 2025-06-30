@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// In the future, this will automatically fetch all your lists
+const allLists = await Astro.glob('../content/lists/*.md');
+---
+
+<Layout title="Homepage | The Best Rankings & Lists">
+	<h1>The Ultimate Collection of Rankings</h1>
+	<p>Welcome! We curate the best lists from across the web to save you time and help you discover the top products, media, and knowledge in any field.</p>
+	
+	<h2>Latest Lists</h2>
+	<ul>
+		{allLists.map((post) => (
+			<li>
+				<a href={`/lists/${post.frontmatter.slug}/`}>{post.frontmatter.title}</a>
+			</li>
+		))}
+	</ul>
+
+	<style>
+		ul { list-style: none; padding: 0; }
+		li { font-size: 1.2rem; margin-bottom: 0.5rem; }
+	</style>
+</Layout>
