@@ -10,13 +10,13 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content, frontmatter } = post; // <--- 我们用这行更简单直接的方式
 ---
 
-<Layout title={post.frontmatter.title}>
-	<h1>{post.frontmatter.title}</h1>
-	<p><em>Last Updated: {post.frontmatter.lastUpdated}</em></p>
-	<p>{post.frontmatter.description}</p>
+<Layout title={frontmatter.title}>
+	<h1>{frontmatter.title}</h1>
+	<p><em>Last Updated: {frontmatter.lastUpdated}</em></p>
+	<p>{frontmatter.description}</p>
 	<hr>
 	<Content />
 </Layout>
